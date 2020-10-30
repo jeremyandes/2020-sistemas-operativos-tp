@@ -12,4 +12,4 @@ class Proceso:
 
 proceso1 = Proceso('Campo1', 2500, 10, 12, 1)
 
-print('Campo: {}, pID: {}, tda: {}, pdp: {}, tdp: {}'.format(proceso1.campo, proceso1.pID, proceso1.tda, proceso1.pdp, proceso1.tdp))
+print(proceso1.muestra())
