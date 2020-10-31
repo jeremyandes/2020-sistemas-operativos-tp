@@ -32,7 +32,4 @@ class ListaProcesos(list):
             # print(obj.pID, obj.tda, obj.pdp, obj.tdp)
             print("pID: {}\ntda: {}\npdp: {}\ntdp: {}\n-----------------------------------"
             .format(obj.pID, obj.tda, obj.pdp, obj.tdp))
-
-
-Procesos = ListaProcesos()
-Procesos.getProcesos()
+            print("-----------------------------------\n")
