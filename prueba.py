@@ -9,7 +9,10 @@ class Proceso:
         self.tdp = tdp
     def muestra(self):
         return '{}, {}, {}, {}, {}'.format(self.campo,self.pID,self.tda,self.pdp,self.tdp)
+    def muestra_fstring(self):
+        return '% s, % s, % s, % s, % s'%(self.campo,self.pID,self.tda,self.pdp,self.tdp)
 
 proceso1 = Proceso('Campo1', 2500, 10, 12, 1)
 
-print(proceso1.muestra())
+print(proceso1.muestra() + "\n------------------------------")
+print(proceso1.muestra_fstring())
