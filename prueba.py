@@ -33,6 +33,6 @@ class ListaProcesos(list):
             print("pID: {}\ntda: {}\npdp: {}\ntdp: {}\n-----------------------------------"
             .format(obj.pID, obj.tda, obj.pdp, obj.tdp))
 
-#comentario de prueba
+
 Procesos = ListaProcesos()
 Procesos.getProcesos()
