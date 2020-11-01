@@ -2,6 +2,9 @@ from prueba import Proceso
 from prueba import ListaProcesos
 import time
 
+#class procesador:
+#    process= Proceso()
+ 
 class Procesador:
     def __init__(self,lista):
         self.lista = lista

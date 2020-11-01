@@ -10,15 +10,15 @@ class Proceso:
     def muestra(self):
         return '{}, {}, {}, {}, {}'.format(self.campo,self.pID,self.tda,self.pdp,self.tdp)
 
-class ListaProcesos(list):
+class ListaProcesos(list): 
 
-    f = open ("procesos.txt", "r")
+    f = open ("procesos.txt", "r")#El nombre del archivo pasa por param
 
-    def __init__(self):
+    def __init__(self, nomarchivo):
         for linea in self.f:
             self.append(self.setProceso(linea))
 
-    def setProceso(self, linea):
+    def setProceso(self, linea): #Esto no es un setProceso jajaja
         datos = linea.split(".")
         procesoNuevo = Proceso()
         procesoNuevo.pID = datos[0]
