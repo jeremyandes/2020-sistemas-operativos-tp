@@ -1,10 +1,48 @@
-def CargaArchivo(): #Martin Carga de archivo, procesos almacenados en list procesos
-    f = open ("procesos.txt", "r")
+#sublibrería "path" de la librería "os"
+import os.path
+#librería "sys" del sistema
+import sys
 
-    procesos = list()
+def CargaArchivo(nombArch): #Paso por parámetro el nombre del archivo
 
-    for linea in f.readlines():
-        proceso=linea.split('.') #Almacena el salto de linea (chequear)
-        procesos.append(proceso)
+    #creo la ruta del archivo, utilizando el parámetro "nombArch"
+    path = "ListasProcesos/{}".format(nombArch)
+    f = open (path, "r")
 
-    f.close()
+    #os.path.getsize >> Retorna el peso del archivo
+    filesize = os.path.getsize(path)
+
+    #si el archivo tiene contenido
+    if filesize != 0:
+        #inicializo la lista "procesos"
+        procesos = list()
+
+        #recorro el archivo
+        for linea in f:
+            #primero elimino el salto de línea "\n"
+            proceso = linea.strip()
+            #luego realizo un split retornando la lista correspondiente
+            proceso = proceso.split('.')
+            #guardo SOLAMENTE enteros
+            proceso[0] = int(proceso[0])
+            proceso[1] = int(proceso[1])
+            proceso[2] = int(proceso[2])
+            proceso[3] = int(proceso[3])
+            #grabo en la lista "procesos" el "proceso" resultante
+            procesos.append(proceso)
+
+            #validacion
+            if proceso[0]>=1 and proceso[0]<=9999 and proceso[1]>=0 and proceso[1]<=99999 and proceso[2]>=1 and proceso[2]<=15 and proceso[3]>=0 and proceso[3]<=9999:
+                print("Proceso ID={} cargado correctamente.".format(int(proceso[0])))
+            else:
+                #sys.exit = "Mata" la ejecución del código y cierra el programa
+                sys.exit("                 <<< ERROR: Campos del proceso ID={}/TDA={}/PDP={}/TDP={} incorrectos . >>>".format(proceso[0],proceso[1]
+                ,proceso[2],proceso[3]))
+
+        #cierro el archivo
+        f.close()
+
+        #retorno la lista "procesos"
+        return procesos
+    else:
+        sys.exit("             << ERROR: El archivo está vacío. >>")
