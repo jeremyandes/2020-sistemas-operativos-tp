@@ -19,11 +19,16 @@ parser.add_option("-q", "--quantum", action="store", type="int", dest="quantum",
             help="Especifique la duracion del quantum en segundos")
 parser.add_option("-t","--thread", action="store", type="int", dest="hilo", 
             help="indique la cantidad de hilos")
+parser.add_option("-f","--filename",action="store",dest="filename",
+            help="Escriba el nombre del achivo de texto")
 
 #Almacena los parametros del sistema en los atributos de options
 (options, args) = parser.parse_args()
 
+#Comprobando que ingresaron correctamente, (lineas provisorias)
 al=options.algoritmo
+archivo=options.filename
+
 if al==None :
     print("Debe indicar el algoritmo a utilizar")
 else:
@@ -39,5 +44,4 @@ if al== "FIFO" or al=="SJF" or al=="PR" :
         print("No se especifico la cantidad de hilos a utilizar")
     else:
         print("Se utilizaran {} hilos".format( str(options.hilo) ))
-
 
