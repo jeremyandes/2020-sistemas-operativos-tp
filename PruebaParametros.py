@@ -1,5 +1,6 @@
 #Parametros del sistema
 from optparse import OptionParser
+from procesador import iniciaProcesador
 
 #Funcion que devuelve el nombre del algoritmo segun la sigla
 def switch_algoritmo(argument):
@@ -25,9 +26,11 @@ parser.add_option("-f","--filename",action="store",dest="filename",
 #Almacena los parametros del sistema en los atributos de options
 (options, args) = parser.parse_args()
 
+#IEjecuto archivo procesador
+iniciaProcesador(options.filename)
+
 #Comprobando que ingresaron correctamente, (lineas provisorias)
 al=options.algoritmo
-archivo=options.filename
 
 if al==None :
     print("Debe indicar el algoritmo a utilizar")
