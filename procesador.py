@@ -1,12 +1,12 @@
 from CargaTxt import CargaArchivo
-from ordenaListas import OrdenaLlegada
-from ordenaListas import OrdenaID
-from ordenaListas import OrdenaPDP
-from ordenaListas import OrdenaTDP
+# from ordenaListas import OrdenaLlegada
+# from ordenaListas import OrdenaID
+# from ordenaListas import OrdenaPDP
+# from ordenaListas import OrdenaTDP
+from ordenaListas import OrdenaPor
 import time
 
-#PRUEBA 1: supuse que pueden haber más archivos con procesos y pensé en modularizar y repetir procedimientos en cada lectura de archivo.
-#Lo mismo que vamos a desarrollar para una sola lectura de archivo, lo dejo seteado en caso de que hayan más.
+
 
 def iniciaProcesador(archivo):
     
@@ -26,30 +26,35 @@ def iniciaProcesador(archivo):
         
         
     #prueba de ordenamientos de listas: FUNCIONANDO
-    print("\nLista ordenada por 'ID' (campo 1):\n")
+    print("\nLista ordenada por 'ID' (campo 0):\n")
 
-    listaNueva = OrdenaID(Procesos)
+    # listaNueva = OrdenaID(Procesos)
+    listaNueva = OrdenaPor(0,Procesos)
     for item in listaNueva:
         print(item)
 
-    print("\nLista ordenada por 'Órden de Llegada' (campo 2):\n")
+    print("\nLista ordenada por 'Órden de Llegada' (campo 1):\n")
 
-    listaNueva = OrdenaLlegada(Procesos)
+    # listaNueva = OrdenaLlegada(Procesos)
+    listaNueva = OrdenaPor(1,Procesos)
     for item in listaNueva:
         print(item)        
 
-    print("\nLista ordenada por 'PDP' (campo 3):\n")
+    print("\nLista ordenada por 'PDP' (campo 2):\n")
         
-    listaNueva = OrdenaPDP(Procesos)
+    # listaNueva = OrdenaPDP(Procesos)
+    listaNueva = OrdenaPor(2,Procesos)
     for item in listaNueva:
         print(item)
 
-    print("\nLista ordenada por 'TDP' (campo 4):\n")
+    print("\nLista ordenada por 'TDP' (campo 3):\n")
 
-    listaNueva = OrdenaTDP(Procesos)
+    # listaNueva = OrdenaTDP(Procesos)
+    listaNueva = OrdenaPor(3,Procesos)
     for item in listaNueva:
         print(item)
-        
+
+iniciaProcesador("lista1.txt")
         
 
 
