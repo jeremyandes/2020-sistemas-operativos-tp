@@ -4,6 +4,7 @@ from CargaTxt import CargaArchivo
 # from ordenaListas import OrdenaPDP
 # from ordenaListas import OrdenaTDP
 from ordenaListas import OrdenaPor
+from Timer import iniciaTimer
 import time
 
 
@@ -14,11 +15,16 @@ def iniciaProcesador(archivo):
     Procesos = CargaArchivo(archivo)
     print("--------------------------------------------------------------\n")
     for proceso in Procesos:
-        print('Proceso (ID: {}) leído.\nTiempo de arribo: {} segundos.\nAlmacenando...\n'.format(proceso[0], proceso[1]))
-        # time.sleep: Para la ejecución del código simulando una espera en segundos.
-        time.sleep(int(proceso[1]))
-        print('Proceso {} almacenado.\nSu prioridad es <<{}>>.\nTiempo necesario del procesador: {} segundos.\nEjecutando proceso...'.format(proceso[0], proceso[2], proceso[3]))
-        time.sleep(int(proceso[3]))
+        print('Proceso (ID: {}) leído.\nTiempo de arribo: {} segundos.\n'.format(proceso[0], proceso[1]))
+
+        #llamo a la funcion "iniciaTimer"
+        iniciaTimer("Almacenando...", proceso[1])
+
+        print('Proceso {} almacenado.\nSu prioridad es <<{}>>.\nTiempo necesario del procesador: {} segundos.\n'.format(proceso[0], proceso[2], proceso[3]))
+
+        #llamo a la funcion "iniciaTimer"
+        iniciaTimer("Ejecutando proceso...", proceso[3])
+        
         print('\n<<<<<Proceso finalizado.>>>>>')
         print("--------------------------------------------------------------\n")
     print("\n===============================================================\n")
