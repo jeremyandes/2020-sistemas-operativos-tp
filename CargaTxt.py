@@ -26,10 +26,8 @@ def CargaArchivo(nombArch): #Paso por parámetro el nombre del archivo, ingresad
                 #luego realizo un split retornando la lista correspondiente
                 proceso = proceso.split('.')
                 #guardo SOLAMENTE enteros
-                proceso[0] = int(proceso[0])
-                proceso[1] = int(proceso[1])
-                proceso[2] = int(proceso[2])
-                proceso[3] = int(proceso[3])
+                for i in range(4):
+                    proceso[i] = int(proceso[i])
 
                 #validacion
                 if proceso[0]>=1 and proceso[0]<=9999 and proceso[1]>=0 and proceso[1]<=99999 and proceso[2]>=1 and proceso[2]<=15 and proceso[3]>=0 and proceso[3]<=9999:
@@ -38,28 +36,27 @@ def CargaArchivo(nombArch): #Paso por parámetro el nombre del archivo, ingresad
 
                     #verifico que se guardó
                     encontro = False
-                    if encontro is False:
-                        for busca in procesos:
-                            if busca[0] == proceso[0]:
-                                print("Proceso ID={} cargado correctamente.".format(int(proceso[0])))
-                                encontro = True
-                                break
+                    for busca in procesos:
+                        if busca[0] == proceso[0]:
+                            print("Proceso ID={} cargado correctamente.".format(int(proceso[0])))
+                            encontro = True
+                            break
 
                     #si terminó el recorrido y no lo encontró
-                    if encontro is not True:
+                    if encontro is False:
                         #sys.exit = "Mata" la ejecución del código y cierra el programa
-                        sys.exit("                 <<< ERROR: Proceso de ID={} no fue cargado correctamente. >>>".format(proceso[0]))
+                        sys.exit("<<< ERROR: Proceso de ID={} no fue cargado correctamente. >>>".format(proceso[0]).center(20))
 
                 else:
                     #sys.exit = "Mata" la ejecución del código y cierra el programa
-                    sys.exit("                 <<< ERROR: Campos del proceso ID={}/TDA={}/PDP={}/TDP={} incorrectos. >>>".format(proceso[0],proceso[1]
-                    ,proceso[2],proceso[3]))
+                    sys.exit("<<< ERROR: Campos del proceso ID={}/TDA={}/PDP={}/TDP={} incorrectos. >>>".format(proceso[0],proceso[1]
+                    ,proceso[2],proceso[3]).center(20))
 
             #cierro el archivo
             f.close()
 
-            #retorno la lista "procesos"
+            #retorno la lista de "procesos"
             return procesos
             
         else:
-            sys.exit("             << ERROR: El archivo está vacío. >>")
+            sys.exit("<< ERROR: El archivo está vacío. >>".center(20))
