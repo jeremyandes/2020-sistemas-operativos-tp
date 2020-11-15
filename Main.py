@@ -2,9 +2,9 @@ import Parametros
 import CargaTxt
 import ordenaListas
 import procesador
-
-
+from RoundRobin import round_robin
 #importar archivos de cada algoritmo
+
 
 parser=Parametros.definicion_params()
 (options, args) = parser.parse_args()#Almacena los parametros del sistema en los atributos de options
@@ -28,4 +28,5 @@ elif options.algoritmo=="PR"  :
 elif options.algoritmo=="RR":
     #Ejecuta algoritmo round robin, param(options.quantum, procesos)
     print("Se ejecuta round robin")
+    round_robin(Procesos, options.quantum)
 
