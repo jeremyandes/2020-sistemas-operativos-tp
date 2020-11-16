@@ -5,6 +5,7 @@ import time
 def round_robin(Procesos, quantum):
     inicio=time.time()                                                                  #Guardo el tiempo en el que se empezo a ejecutar el algoritmo
     while Procesos:                                                                     #Mientras la lista de procesos no este vacia
+        borrados=[]                                                                     #inicializo la lista de borrados como vacía
         for act in Procesos:                                                            #Recorro cada proceso en la lista
             if act[1]<= (time.time()-inicio) :                                          #Si el tiempo de arribo es <= al tiempo transcurrido desde que comenzo el algoritmo
                 if quantum > act[3] :                                                   #Si el tiempo restante del proceso es menor al quantum
@@ -15,8 +16,10 @@ def round_robin(Procesos, quantum):
                 if act[3]<=0 :                                                          #El proceso termino si su tiempo restante es menor o igual a cero
                     #agregar al archivo de salida - falta desarrollar la funcion
                     print("El proceso {} termino de ejecutarse. En el momento {}".format(act[0],time.time()-inicio))#Se imprime por pantalla el proceso que termino
-                    Procesos.remove(act)                                                #se remueve el proceso de la lista
+                    borrados.append(act)                                                #se remueve el proceso de la lista
             else:
                 break   #Si el tiempo de arribo es mayor al tiempo actual este y el resto de los procesos en la lista no se deben ejecutar, por lo tanto salgo del ciclo
+        for borrar in borrados:
+            Procesos.remove(borrar)
 
 
