@@ -3,14 +3,9 @@ from Timer import iniciaTimer
 import time
 from termcolor import colored
 
-'''Tiempo de Turnaround de cada proceso_el total transcurrido desde que se inicia (Ti) hasta que finaliza (Tf)
-Tiempo de Espera en la Cola de Listos
-Tiempo de Espera Total_ turnaround - cola de listos 
-Es el tiempo en que los procesos están activos pero sin ser ejecutados, es decir, los tiempos de espera en las distintas colas
-Tiempo de Respuesta_Tiempo que pasa desde que se manda ejecutar un proceso hasta que se ejecuta por primera vez.
-Tiempo Total de Uso de procesador_
+'''
 [0]ID [1]TArribo [2]prioridad [3]tiempo de procesador [4]tiempo de CPU
-[5]tiempo de rta [6]turnaround'''
+[5]tiempo de rta [6]turnaround [7]espera total'''
 #Tiempo de espera en cola de listos = es el transcurrido desde Ti hasta que se ejecuta por primera vez ?
 
 def round_robin(Procesos, quantum):
@@ -23,7 +18,7 @@ def round_robin(Procesos, quantum):
         for act in Procesos:                                                            #Recorro cada proceso en la lista
             if act[1] <= (time.time()-inicio) :                                         #Si el tiempo de arribo es <= al tiempo transcurrido desde que comenzo el algoritmo
                 if act[4] == 0 :                                                        #El proceso llego pero no se ejecuto tdv
-                    act.append(time.time()-inicio)                                      #Establezco el tiempo en que se comenzo a ejecutarse el primer quantum
+                    act.append(time.time()-inicio-act[1])                               #guardo el seg en que se comenzo a ejecutarse el primer quantum desde su arribo
                 if quantum > act[3] :                                                   #Si el tiempo restante del proceso es menor al quantum
                     iniciaTimer("Se ejecuta el proceso {}". format(act[0]), act[3])     #Entonces pasa por parametro ese tiempo 
                     act[4]+=act[3]                                                      #se suma el tiempo en procesador
@@ -34,14 +29,12 @@ def round_robin(Procesos, quantum):
                 if act[3]<=0 :                                                          #El proceso termino si su tiempo restante es menor o igual a cero
                     #agregar al archivo de salida - falta desarrollar la funcion
                     print("El proceso {} termino de ejecutarse. En el momento {:.1f} \n".format(act[0],time.time()-inicio))#Se imprime por pantalla el proceso que termino
-                    act.append(time.time() - inicio - act[1])                           #Guardo el tiempo TURNAROUND =seg en q termino - seg de arribo
-                    borrados.append(act)                                                #se remueve el proceso de la lista
+                    act.append(time.time() - inicio - act[1])                           #Guardo el tiempo TURNAROUND =seg en q termino - seg de arribo      
+                    act.append(act[6]-act[4])                                           #Guardo el tiempo de espera total, turnaround - tiempo de CPU
+                    borrados.append(act)                                                #Guardo el proceso que termino
             else:
                 break   #Si el tiempo de arribo es mayor al tiempo actual este y el resto de los procesos en la lista no se deben ejecutar, por lo tanto salgo del ciclo
         for borrar in borrados:
             Procesos.remove(borrar)                                                     #remuevo los procesos que terminaron de la cola en ejecucion
             terminados.append(borrar)                                                   #agrego el proceso a la lista de terminados
-    print(colored("RESULTADOS DE LA SIMULACION POR PROCESO", "magenta").center(20, " "))
-    print(colored("  proceso  |   turnaround    | cola de listos | espera total |    respuesta    |     uso de CPU     ", "green"))
-    for p in terminados :                                                               #Muestro los resultados por proceso
-        print("{:^11s}".format(str(p[0]))+ "|" + "{:.2f} [s]".format(p[6]).center(17) + "|" +"{:.2f} [s]".format(0).center(16)+"|"+ "{:.2f} [s]".format(0).center(14)+"|"+"{:.2f} [s]".format(p[5]).center(17) +"|"+"{:.2f} [s]".format(p[4]).center(20))
+    return terminados

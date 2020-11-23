@@ -1,4 +1,12 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "cSpell.words": [
+        "borrados",
+        "ejecuta",
+        "inicia",
+        "inicia timer",
+        "inicio",
+        "timer"
+    ]
 }

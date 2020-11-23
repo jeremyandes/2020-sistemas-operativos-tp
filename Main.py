@@ -3,6 +3,8 @@ import CargaTxt
 import ordenaListas
 import procesador
 from RoundRobin import round_robin
+from termcolor import colored
+from Resultados import muestra_result
 #importar archivos de cada algoritmo
 
 
@@ -15,18 +17,20 @@ Procesos = ordenaListas.OrdenaPor(1,Procesos)#Ordena la lista de procesos por or
 if options.algoritmo== "FIFO" :
     if options.hilo != 1:
         #Ejecuta algoritmo FIFO con varios hilos, parametros(options.hilo, procesos)
-        print("Se ejecuta FIFO varios hilos")
+        print(colored("Se ejecuta FIFO varios hilos", "magenta"))
     else:
         #Ejecuta algoritmo FIFO con un hilo, parametro(procesos)
-        print("Se ejecuta FIFO un hilo")
+        print(colored("Se ejecuta FIFO un hilo","magenta"))
 elif options.algoritmo=="SJF" :
     #Ejecuta algoritmo SJF, parametro(procesos)
-    print("Se ejecuta primero el mas corto")
+    print(colored("Se ejecuta primero el mas corto", "magenta"))
 elif options.algoritmo=="PR"  :
     #Ejecuta algoritmo de prioridades, parametro(procesos)
-    print("Se ejecuta prioridades")
+    print(colored("Se ejecuta prioridades", "magenta"))
 elif options.algoritmo=="RR":
     #Ejecuta algoritmo round robin, param(options.quantum, procesos)
-    print("Se ejecuta round robin")
-    round_robin(Procesos, options.quantum)
+    print(colored("Se ejecuta round robin", "magenta"))
+    terminados=round_robin(Procesos, options.quantum)
+    muestra_result(terminados)
+#imprimir resultados a nivel sistema
 

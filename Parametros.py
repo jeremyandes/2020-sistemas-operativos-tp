@@ -13,9 +13,10 @@ def switch_algoritmo(argument):
     }
     return switcher.get(argument, "entrada invalida")
 
-#Definicion de las opciones
+#Definicion de los flags 
 def definicion_params():
-    parser=OptionParser()
+    usage= "usage: %prog -f <archivo> -a <algoritmo> [-q <quantum>] [-t <hilos>]"           #indicacion del correcto uso del programa
+    parser=OptionParser(usage=usage)
     parser.add_option("-a","--algoritmo", choices=["FIFO","SJF","PR","RR"],
                 help="Escriba el algoritmo de scheduling de procesador")
     parser.add_option("-q", "--quantum", action="store", type="int", dest="quantum", default=2,
