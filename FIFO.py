@@ -10,13 +10,9 @@ def algoritmo_fifo(Procesos):
                 iniciaTimer("Se ejecuta el proceso {}".format(act[0]),act[3])   #Si no, vuelvo a recorrer hasta que este listo
                 #Falta guardar en archivo de salida
                 print("El proceso {} termino de ejecutarse, en el momento {}".format(act[0],time.time()-inicio))
-                indice=Procesos.index(act)
-                if indice != 0:
-                    Procesos.remove(act)
-                    act=act(indice-1)
-                else:
-                    Procesos.remove(act)
-                    break
+                
+                Procesos.remove(act) #como el elemento a eliminar en FIFO siempre es la primer posicion, corto el ciclo,
+                break               #y vuelvo a recorrer desde el siguiente proceso              
             else:
                 break
 
