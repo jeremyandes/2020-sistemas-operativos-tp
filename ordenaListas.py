@@ -1,7 +1,6 @@
-#librería con la que se puede realizar muchas operaciones, después la veremos en profundidad, tiene cosas copadas
 import operator
 
-#prueba de única función de ordenamiento segun el campo
+#función de ordenamiento segun el campo
 #valor campo:   0 = ID // 1 = Llegada // 2 = PDP // 3 = TDP
 def OrdenaPor(campo, lista):
     #paso el campo como key
