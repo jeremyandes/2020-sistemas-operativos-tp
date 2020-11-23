@@ -16,10 +16,13 @@ Parametros.comprueba_params(options)#Contiene System.exit(), puede finalizar el 
 Procesos = CargaTxt.CargaArchivo(options.filename)#Carga la lista de procesos desde el archivo
 Procesos = ordenaListas.OrdenaPor(1,Procesos)#Ordena la lista de procesos por orden de llegada
 #procesador.iniciaProcesador(Procesos)#Muestra la carga de los procesos
+nomArch=input("Que nombre desea ponerle al archivo en el que se guardan los resultados de la simulacion?")
 if options.algoritmo== "FIFO" :
     if options.hilo != 1:
         #Ejecuta algoritmo FIFO con varios hilos, parametros(options.hilo, procesos)
         print(colored("Se ejecuta FIFO varios hilos", "magenta"))
+        muestra_result(terminados, 6, 7, 7, 5, 4)
+        escribe_archivo(nomArch, terminados, 6, 7, 7, 5, 4)
     else:
         #Ejecuta algoritmo FIFO con un hilo, parametro(procesos)
         print(colored("Se ejecuta FIFO un hilo","magenta"))
@@ -35,9 +38,8 @@ elif options.algoritmo=="RR":
     #Ejecuta algoritmo round robin, param(options.quantum, procesos)
     print(colored("Se ejecuta round robin", "magenta"))
     terminados=round_robin(Procesos, options.quantum)
-    muestra_result(terminados)
-nomArch=input("Que nombre desea ponerle al archivo en el que se guardan los resultados de la simulacion?")
-escribe_archivo(nomArch, terminados)
+    muestra_result(terminados, 6, 7, 7, 5, 4)
+    escribe_archivo(nomArch, terminados, 6, 7, 7, 5, 4)
 #imprimir resultados a nivel sistema
 
 
