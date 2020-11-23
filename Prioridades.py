@@ -21,7 +21,6 @@ def prioridades(Procesos):
     print("EJECUCIÓN FINALIZADA")     
 
 def procesaCola(cola, contador):
-    #cola ordenada por campo 2 (prioridad)
     cola = OrdenaPor(2,cola)
     item = cola[0]
     item[3] -= 1
