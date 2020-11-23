@@ -5,6 +5,7 @@ import procesador
 from RoundRobin import round_robin
 from termcolor import colored
 from Resultados import muestra_result
+from Resultados import escribe_archivo
 #importar archivos de cada algoritmo
 
 
@@ -32,5 +33,8 @@ elif options.algoritmo=="RR":
     print(colored("Se ejecuta round robin", "magenta"))
     terminados=round_robin(Procesos, options.quantum)
     muestra_result(terminados)
+nomArch=input("Que nombre desea ponerle al archivo en el que se guardan los resultados de la simulacion?")
+escribe_archivo(nomArch, terminados)
 #imprimir resultados a nivel sistema
+
 

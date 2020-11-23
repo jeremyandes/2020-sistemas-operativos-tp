@@ -12,7 +12,25 @@ Tiempo Total de Uso de procesador'''
 def muestra_result(terminados) : #ingresa por parametro una lista con las carcteristicas definidas arriba ^
     print(colored("RESULTADOS DE LA SIMULACION POR PROCESO", "magenta").center(30, " "))
     print(colored("  proceso  |   turnaround    | cola de listos | espera total |    respuesta    |     uso de CPU     ", "green"))
-    for p in terminados :                                                               #Muestro los resultados por proceso
-        print("{:^11s}".format(str(p[0]))+ "|" + "{:.2f} [s]".format(p[6]).center(17) 
-        + "|" +"{:.2f} [s]".format(p[5]).center(16)+"|"+ "{:.2f} [s]".format(p[7]).center(14)+"|" #faltan definir tiempos de espera en cola de listos y tiempo de espera total
-        +"{:.2f} [s]".format(p[5]).center(17) +"|"+"{:.2f} [s]".format(p[4]).center(20))
+    for p in terminados :                                   #Muestro los resultados por proceso
+        cadena="{:^11s}".format(str(p[0]))                  #inicializo la cadena con el id 
+        cadena+="|" + "{:.2f} [s]".format(p[6]).center(17)  #agrego el tiempo turnaround
+        cadena+="|" + "{:.2f} [s]".format(p[5]).center(16)  #agrego el tiempo de espera en la cola de listos
+        cadena+="|" + "{:.2f} [s]".format(p[7]).center(14)  #agrego el tiempo de espera total
+        cadena+="|" + "{:.2f} [s]".format(p[5]).center(17)  #agrego el tiempo de respuesta
+        cadena+="|" + "{:.2f} [s]".format(p[4]).center(20)  #agrego el tiempo de uso de CPU
+        print(cadena)                                       #imprimo la cadena
+
+#Funcion que carga los resultados de ejecuion en un archivo
+def escribe_archivo(nomArch, terminados):
+    nomArch+=".txt"
+    f=open(nomArch, 'w')
+    for p in terminados :
+        f.write("id: {}".format(str(p[0])))
+        f.write("|turnaround: {:.2f} [s]".format(p[6]))
+        f.write("|espera en cola de listos: {:.2f} [s]".format(p[5]))
+        f.write("|espera total: {:.2f} [s]".format(p[7]))
+        f.write("|respuesta: {:.2f} [s]".format(p[5]))
+        f.write("|uso de CPU: {:.2f} [s]".format(p[4]))
+        f.write("\n")
+    f.close()

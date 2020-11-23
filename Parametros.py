@@ -38,9 +38,9 @@ def comprueba_params(options):
     #Si no se ingreso tipo de algortimo, termina el programa con un mensaje indicando la razon
     if al==None :
         sys.exit("<< ERROR: Debe indicar el algoritmo a utilizar >>".center(20))
+"""
     else:
         print("El algorimo elegido fue ", switch_algoritmo(al))
-""" 
     if al == 'RR':
         print("El quantum es de ", options.quantum)
     else:
