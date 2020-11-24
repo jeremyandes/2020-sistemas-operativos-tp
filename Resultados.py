@@ -1,5 +1,6 @@
 from termcolor import colored
 from Timer import convierteContador
+import math
 
 '''Tiempo de Turnaround de cada proceso_el total transcurrido desde que se inicia (Ti) hasta que finaliza (Tf)
 Tiempo de Espera en la Cola de Listos
@@ -78,3 +79,20 @@ def promedio_respuesta(terminados) :
         return sum/cont
 
 #Cantidad promedio de trabajos finalizados por cada 1000 segundos.
+def promedio_trabajos(terminados) :
+    milseg=[]                           #inicializo la lista que cuenta los trabajos terminados cada 1000
+    seg=[]                              #inicializo la lista que me dice que milisegundos tienen por lo menos un proceso que termino en ellos 
+    for p in procesos :
+        terminoen= p[6] + p[1]          #segundo de ejecucion del algoritmo en que termino el proceso, turnaround + arribo
+        mili=math.ceil(terminoen/1000)  #divide el tiempo en que termino por mil, y redondea hacia arriba
+        #1455seg / 1000 =1,455 cuando redodndea queda 2, es decir esta dentro de los 2000 seg
+        if mili not in seg :
+            seg.append(mili)
+            milseg.append(1)
+        else :
+            milseg[seg.index(mili)]+=1
+    #Aca ya tengo la lista milseg, paralela a seg, que contiene todos los contadores por unidad de tiempo (1000 seg)
+    sum=0
+    for m in milseg:
+        sum+=m
+    maximo= max()

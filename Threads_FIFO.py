@@ -20,7 +20,7 @@ def CreaThreads (cant_threads,Procesos):
 
     threads = list() 
     for i in range(cant_threads): #creo los threads
-        t = threading.Thread(target=threader, args(Procesos,)) 
+        t = threading.Thread(target=threader, args(Procesos)) 
         threads.append(t)
         t.start()
     for thread in threads :
