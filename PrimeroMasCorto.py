@@ -12,12 +12,12 @@ def primeroMasCorto(Procesos):
             proceso = Procesos[0]
             if contador == proceso[1]:
                 colaEjecucion.append(proceso)
-                print("Proceso ID={} CARGADO al segundo {} <<<".format(proceso[0],contador))
+                print("[{}]     Proceso ID={} cargado.".format(proceso[0],contador))
                 Procesos.pop(0)
-
-        colaEjecucion = procesaCola(colaEjecucion,contador)
-        contador += 1
-        time.sleep(1)
+        if colaEjecucion:
+            colaEjecucion = procesaCola(colaEjecucion,contador)
+            contador += 1
+            time.sleep(1)
     print("EJECUCIÓN FINALIZADA")     
 
 def procesaCola(cola, contador):
@@ -26,7 +26,7 @@ def procesaCola(cola, contador):
     item = cola[0]
     item[3] -= 1
     if item[3]<=0:
-        print("Proceso ID={} finalizado al segundo {}.".format(item[0],contador))
+        print("[{}]     Proceso ID={} finalizado.".format(item[0],contador))
         cola.pop(0)
     return cola
 

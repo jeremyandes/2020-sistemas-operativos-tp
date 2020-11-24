@@ -18,10 +18,7 @@ def iniciaTimer(texto,contador):
         contador -= 1
     print("\n")
 
-def aMinSeg (x):
-    """ Dada una duración en segundos sin fracciones
-        (la función debe invocarse con números enteros)
-        se la convierte a horas, minutos y segundos """
-    min = (x % 3600) // 60
-    seg = (x % 3600 ) % 60
-    return ( min, seg)
+def convierteContador(contador):
+    mins, secs = divmod(contador,60)
+    minsec = "{:02d}:{:02d}".format(mins,secs)
+    return minsec
