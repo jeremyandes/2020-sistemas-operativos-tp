@@ -1,4 +1,5 @@
 from termcolor import colored
+from Timer import aMinSeg
 
 '''Tiempo de Turnaround de cada proceso_el total transcurrido desde que se inicia (Ti) hasta que finaliza (Tf)
 Tiempo de Espera en la Cola de Listos
@@ -21,8 +22,15 @@ def muestra_result(terminados, turna, cola, esptot, rta, cpu) : #ingresa por par
         cadena+="|" + "{:.2f} [s]".format(p[cpu]).center(20)    #agrego el tiempo de uso de CPU
         print(cadena)                                           #imprimo la cadena
 
+def muestra_sisresult(promturna, esptotal) :
+    print("\n")
+    print(colored("RESULTADOS DE LA SIMULACION A NIVEL SISTEMA", "magenta").center(30, " "))
+    print("Tiempo promedio turnaround {:.2f} [s]".format(promturna))
+    (min, seg)= aMinSeg(int(esptotal))
+    print("Tiempo de espera total de los procesos en el sistema {}:{} [minutos]".format(min, seg))
+
 #Funcion que carga los resultados de ejecuion en un archivo
-def escribe_archivo(nomArch, terminados, turna, cola, esptot, rta, cpu):
+def escribe_archivo(nomArch, terminados, turna, cola, esptot, rta, cpu) :
     nomArch+=".txt"
     f=open(nomArch, 'w')
     for p in terminados :
@@ -34,3 +42,22 @@ def escribe_archivo(nomArch, terminados, turna, cola, esptot, rta, cpu):
         f.write("|uso de CPU: {:.2f} [s]".format(p[cpu]))
         f.write("\n")
     f.close()
+
+#Funcion que evalua el tiempo de Turnaround Promedio de los procesos en el sistema. Se mide en segundos.
+def promedio_turnaround(terminados, turna) :
+    sum=0
+    cont=0
+    for p in terminados:
+        sum+=p[turna]
+        cont+=1
+    if cont == 0 :
+        return 0
+    else :
+        return sum/cont
+
+#Tiempo de Espera Total de los procesos en el sistema. Se mide en segundos.
+def espera_total(terminados, esp) :
+    sum=0
+    for p in terminados:
+        sum+=p[esp]
+    return sum
