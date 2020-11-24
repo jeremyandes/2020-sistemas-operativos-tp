@@ -96,3 +96,4 @@ def promedio_trabajos(terminados) :
     for m in milseg:
         sum+=m
     maximo= max()
+
