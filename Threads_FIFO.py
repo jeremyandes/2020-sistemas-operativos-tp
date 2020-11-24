@@ -7,20 +7,21 @@ import time
 lista_lock = threading.Lock()
 print_lock = threading.Lock()
 
-def threader (Procesos):
+def threader(Procesos):
     inicio = time.time()
-    with lista_lock :
-        proceso = Procesos.pop(0)
-    time.sleep(proceso[3])
-    with print_lock :
-        print("El proceso {} termino de ejecutarse, en el momento {:.2f}".format(proceso,time.time()-inicio))
+    while Procesos: 
+        if Procesos[0][1] <= time.time()-inicio:
+            with lista_lock :
+                proceso = Procesos.pop(0)
+            time.sleep(proceso[3])
+            with print_lock :
+                print("El proceso {} termino de ejecutarse, en el momento {:.2f}".format(proceso[0],time.time()-inicio))
 
-
-def CreaThreads (cant_threads,Procesos):
-
+def CreaThreads(cant_threads,Procesos):
     threads = list() 
     for i in range(cant_threads): #creo los threads
-        t = threading.Thread(target=threader, args(Procesos,)) 
+        #t = threading.Thread(target=threader, args=(tgtHost,))
+        t = threading.Thread(target=threader, args=(Procesos,)) 
         threads.append(t)
         t.start()
     for thread in threads :
