@@ -7,6 +7,7 @@ from termcolor import colored
 from Resultados import muestra_result
 from Resultados import escribe_archivo
 from FIFO import algoritmo_fifo
+from Threads_FIFO import CreaThreads
 #importar archivos de cada algoritmo
 
 
@@ -16,10 +17,12 @@ Parametros.comprueba_params(options)#Contiene System.exit(), puede finalizar el 
 Procesos = CargaTxt.CargaArchivo(options.filename)#Carga la lista de procesos desde el archivo
 Procesos = ordenaListas.OrdenaPor(1,Procesos)#Ordena la lista de procesos por orden de llegada
 #procesador.iniciaProcesador(Procesos)#Muestra la carga de los procesos
+
 if options.algoritmo== "FIFO" :
     if options.hilo != 1:
         #Ejecuta algoritmo FIFO con varios hilos, parametros(options.hilo, procesos)
         print(colored("Se ejecuta FIFO varios hilos", "magenta"))
+        CreaThreads(options.hilo, Procesos)
     else:
         #Ejecuta algoritmo FIFO con un hilo, parametro(procesos)
         print(colored("Se ejecuta FIFO un hilo","magenta"))
