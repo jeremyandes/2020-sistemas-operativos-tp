@@ -33,6 +33,7 @@ def prioridadesSinDesalojo(Procesos):
 def procesaCola(cola, contador, terminados):
     cola = OrdenaPor(2,cola)
     item = cola[0]
+    print("\n")
     iniciaTimer(("Ejecutando Proceso ID={}".format(item[0])),item[3])
     item[4] = item[3]
     item[5] = contador - item[1]
