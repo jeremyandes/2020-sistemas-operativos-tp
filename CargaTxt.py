@@ -34,11 +34,12 @@ def CargaArchivo(nombArch): #Paso por parámetro el nombre del archivo, ingresad
                     #agrego los campos faltantes para calcular los tiempos de cada proceso
                     for i in range(4):
                         proceso.append(0)
+                    #los guardo como enteros
+                    for i in reversed(range(4)):
+                        proceso[i] = int(proceso[i])
 
                     #grabo en la lista "procesos" el "proceso" resultante
                     procesos.append(proceso)
-                    for i in range(4):
-                        proceso.append(0)
                         
                     #verifico que se guardó
                     encontro = False
