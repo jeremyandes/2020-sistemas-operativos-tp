@@ -80,20 +80,15 @@ def promedio_respuesta(terminados) :
 
 #Cantidad promedio de trabajos finalizados por cada 1000 segundos.
 def promedio_trabajos(terminados) :
-    milseg=[]                           #inicializo la lista que cuenta los trabajos terminados cada 1000
-    seg=[]                              #inicializo la lista que me dice que milisegundos tienen por lo menos un proceso que termino en ellos 
-    for p in procesos :
-        terminoen= p[6] + p[1]          #segundo de ejecucion del algoritmo en que termino el proceso, turnaround + arribo
-        mili=math.ceil(terminoen/1000)  #divide el tiempo en que termino por mil, y redondea hacia arriba
-        #1455seg / 1000 =1,455 cuando redodndea queda 2, es decir esta dentro de los 2000 seg
-        if mili not in seg :
-            seg.append(mili)
-            milseg.append(1)
-        else :
-            milseg[seg.index(mili)]+=1
-    #Aca ya tengo la lista milseg, paralela a seg, que contiene todos los contadores por unidad de tiempo (1000 seg)
-    sum=0
-    for m in milseg:
-        sum+=m
-    maximo= max()
-
+    max = 0 
+    cont = 0
+    for p in terminados:    #busco el maximo tiempo absoluto de un proceso en el algoritmo
+        t=p[6]+p[1]         #tiempo absoluto del proceso, turnaround + arribo
+        cont+=1             #cuento los procesos terminados
+        if t > max :
+            max=t
+    max=math.ceil(max/1000) #si es 7455, por ejemplo, almaceno 8
+    if cont == 0 :
+        return 0
+    else :
+        return cont/max

@@ -36,7 +36,7 @@ elif options.algoritmo=="RR":
     #Ejecuta algoritmo round robin, param(options.quantum, procesos)
     print(colored("Se ejecuta round robin", "magenta"))
     terminados=round_robin(Procesos, options.quantum)
-'''
+
 #se muestran los resultados de las imulacion a nivel proceso
 Resultados.muestra_result(terminados)
 #Se calculan los resultados de la simulacion a nivel sistema
@@ -46,8 +46,4 @@ promrta = Resultados.promedio_respuesta(terminados)
 #se muestran los resultados de la sumulacion a nivel sistema
 Resultados.muestra_sisresult(promTurna,esptotal, options.hilo , promrta)
 #se guardan los resultados de la simulacion en un archivo de salida
-Resultados.escribe_archivo(nomArch, terminados)'''
-
-
-
-
+Resultados.escribe_archivo(nomArch, terminados)
