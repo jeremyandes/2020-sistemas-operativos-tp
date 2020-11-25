@@ -1,5 +1,6 @@
 import threading
 import time
+import Timer
 '''with some_lock:
     # do something...'''
 
@@ -24,12 +25,12 @@ def threader(Procesos):
             
             proceso[4] = proceso[3]                         #tiempo de CPU
             proceso[5] = time.time()-inicio-proceso[1]      #tiempo de rta
-            proceso[7] = time.time()-inicio-proceso[1]      #timepo de espera
+            proceso[7] = time.time()-inicio-proceso[1]      #tiempo de espera
             time.sleep(proceso[3])
             
             with print_lock :
-                print("El proceso {} termino de ejecutarse, en el momento {:.2f}".format(proceso[0],time.time()-inicio))
-            proceso[6]= time.time()-inicio-proceso[1]      #timepo de turnaround 
+                print("[{}]     Proceso ID={} finalizado.".format(minSec((time.time()-inicio)),act[0]))
+            proceso[6]= time.time()-inicio-proceso[1]      #tiempo de turnaround 
         
             with terminados_lock:
                 terminados.append(proceso)
