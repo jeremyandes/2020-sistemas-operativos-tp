@@ -6,8 +6,6 @@ from CargaTxt import CargaArchivo
 from ordenaListas import OrdenaPor
 from Timer import iniciaTimer
 import time
-from PrioridadesSinDesalojo import prioridadesSinDesalojo
-from PrioridadesDesalojo import prioridadesDesalojo
 
 
 
@@ -45,12 +43,5 @@ def muest_lista(listaNueva):
     listaNueva = OrdenaPor(3,Procesos)
     for item in listaNueva:
         print(item) """
-
-Procesos = CargaArchivo("lista1.txt")
-terminados = prioridadesSinDesalojo(Procesos)
-
-print("\n-----------------------------\n")
-for proceso in terminados:
-    print(proceso)
 
 
