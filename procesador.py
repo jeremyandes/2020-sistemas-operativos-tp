@@ -6,8 +6,6 @@ from CargaTxt import CargaArchivo
 from ordenaListas import OrdenaPor
 from Timer import iniciaTimer
 import time
-from PrioridadesSinDesalojo import prioridadesSinDesalojo
-from PrioridadesDesalojo import prioridadesDesalojo
 
 
 
