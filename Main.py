@@ -21,7 +21,7 @@ if options.algoritmo== "FIFO" :
     if options.hilo != 1:
         #Ejecuta algoritmo FIFO con varios hilos, parametros(options.hilo, procesos)
         print(colored("Se ejecuta FIFO varios hilos", "magenta"))
-        CreaThreads(options.hilo, Procesos)
+        terminados = CreaThreads(options.hilo, Procesos)
     else:
         #Ejecuta algoritmo FIFO con un hilo, parametro(procesos)
         print(colored("Se ejecuta FIFO un hilo","magenta"))
@@ -43,7 +43,8 @@ Resultados.muestra_result(terminados)
 promTurna = Resultados.promedio_turnaround(terminados)
 esptotal = Resultados.espera_total(terminados)
 promrta = Resultados.promedio_respuesta(terminados)
+promtrabajos= Resultados.promedio_trabajos(terminados)
 #se muestran los resultados de la sumulacion a nivel sistema
-Resultados.muestra_sisresult(promTurna,esptotal, options.hilo , promrta)
+Resultados.muestra_sisresult(promTurna,esptotal, options.hilo , promrta, promtrabajos)
 #se guardan los resultados de la simulacion en un archivo de salida
-Resultados.escribe_archivo(nomArch, terminados)
+Resultados.escribe_archivo(nomArch, terminados, promTurna, esptotal, options.hilo , promrta, promtrabajos)
