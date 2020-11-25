@@ -1,5 +1,4 @@
 from termcolor import colored
-from Timer import convierteContador
 import math
 
 '''Tiempo de Turnaround de cada proceso_el total transcurrido desde que se inicia (Ti) hasta que finaliza (Tf)
@@ -24,17 +23,17 @@ def muestra_result(terminados) : #ingresa por parametro una lista con las carcte
         print(cadena)                                           #imprimo la cadena
 
 #Funcion que muestra los resultados de la simulacion a nivel sistema
-def muestra_sisresult(promturna, esptotal, threads, promrta) :
-    print("\n")
+def muestra_sisresult(promturna, esptotal, threads, promrta, promjob) :
     print(colored("RESULTADOS DE LA SIMULACION A NIVEL SISTEMA", "magenta").center(30, " "))
     print("Tiempo promedio turnaround {:.2f} [s]".format(promturna))
     print("Tiempo de espera total de los procesos en el sistema {:.2f} [s]".format(esptotal))
     print("Tiempo promedio de respuesta {:.2f} [s]".format(promrta))
     if threads != 1 :                                        #Muestra cantidad de threads utilizados (si corresponde).
         print("Se utilizaron {} threads".format(threads))
+    print("Promedio de trabajos realizados cada 1000 [s] {:.2f} [trabajos]".format(promjob))
 
 #Funcion que carga los resultados de ejecuion en un archivo
-def escribe_archivo(nomArch, terminados) :
+def escribe_archivo(nomArch, terminados, promturna, esptotal, threads, promrta, promjob) :
     nomArch+=".txt"
     f=open(nomArch, 'w')
     for p in terminados :

@@ -5,22 +5,18 @@ from ordenaListas import OrdenaPor
 #campo 0 = PID // campo 1 = tiempo de arribo // campo 2 = prioridad // campo 3 = tiempo de procesador
 #campo 4 = tiempo de cpu // campo 5 = tiempo de respuesta // campo 6 = turnaround // campo 7 = tiempo de espera
 def prioridadesDesalojo(Procesos):
-    Procesos = OrdenaPor(1,Procesos)
     terminados = list()
     colaEjecucion = list()
     contador = 0
-    print("----------------------------------------------------\n")
     while Procesos or colaEjecucion:
         if Procesos:
             proceso = Procesos[0]
             if contador == proceso[1]:
                 colaEjecucion.append(proceso)
-                print("[{}]     Proceso ID={} cargado.".format(minSec(contador),proceso[0]))
                 Procesos.pop(0)
         if colaEjecucion:
             colaEjecucion, terminados, contador = procesaCola(colaEjecucion,contador,terminados)
-            #time.sleep(1)
-    print("EJECUCIÓN FINALIZADA")
+            time.sleep(1)
     return terminados
 
 def procesaCola(cola, contador, terminados):
