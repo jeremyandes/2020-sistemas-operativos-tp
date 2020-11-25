@@ -46,11 +46,4 @@ def muest_lista(listaNueva):
     for item in listaNueva:
         print(item) """
 
-Procesos = CargaArchivo("lista1.txt")
-terminados = prioridadesSinDesalojo(Procesos)
-
-print("\n-----------------------------\n")
-for proceso in terminados:
-    print(proceso)
-
 
