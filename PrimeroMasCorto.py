@@ -1,5 +1,6 @@
 import time
 from Timer import iniciaTimer
+from Timer import minSec
 from ordenaListas import OrdenaPor
 
 def primeroMasCorto(Procesos):
@@ -12,10 +13,10 @@ def primeroMasCorto(Procesos):
             proceso = Procesos[0]
             if contador == proceso[1]:
                 colaEjecucion.append(proceso)
-                print("[{}]     Proceso ID={} cargado.".format(proceso[0],contador))
+                print("[{}]     Proceso ID={} cargado.".format(proceso[0],minSec(contador)))
                 Procesos.pop(0)
         if colaEjecucion:
-            colaEjecucion = procesaCola(colaEjecucion,contador)
+            colaEjecucion = procesaCola(colaEjecucion,minSec(contador))
             contador += 1
             time.sleep(1)
     print("EJECUCIÓN FINALIZADA")     

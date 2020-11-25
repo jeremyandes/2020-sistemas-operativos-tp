@@ -18,7 +18,7 @@ def iniciaTimer(texto,contador):
         contador -= 1
     print("\n")
 
-def convierteContador(contador):
+def minSec(contador):
     mins, secs = divmod(contador,60)
     minsec = "{:02d}:{:02d}".format(mins,secs)
     return minsec
