@@ -25,9 +25,9 @@ def muestra_result(terminados) : #ingresa por parametro una lista con las carcte
 #Funcion que muestra los resultados de la simulacion a nivel sistema
 def muestra_sisresult(promturna, esptotal, threads, promrta, promjob) :
     print(colored("RESULTADOS DE LA SIMULACION A NIVEL SISTEMA", "magenta").center(30, " "))
-    print("Tiempo promedio turnaround {:.2f} [s]".format(promturna))
-    print("Tiempo de espera total de los procesos en el sistema {:.2f} [s]".format(esptotal))
-    print("Tiempo promedio de respuesta {:.2f} [s]".format(promrta))
+    print("Tiempo promedio turnaround".center(42)+" {} [s]".format(int(promturna)))
+    print("Tiempo de espera total de los procesos en el sistema".center(42)+" {} [s]".format(int(esptotal)))
+    print("Tiempo promedio de respuesta".center(42)+" {} [s]".format(int(promrta)))
     if threads != 1 :                                        #Muestra cantidad de threads utilizados (si corresponde).
         print("Se utilizaron {} threads".format(threads))
     print("Promedio de trabajos realizados cada 1000 [s] {:.2f} [trabajos]".format(promjob))
@@ -44,6 +44,12 @@ def escribe_archivo(nomArch, terminados, promturna, esptotal, threads, promrta, 
         f.write("|respuesta: {:.2f} [s]".format(p[5]))
         f.write("|uso de CPU: {:.2f} [s]".format(p[4]))
         f.write("\n")
+    cadena="Pomedio turnaround: {} [s]".format(int(promturna))
+    cadena+="|Espera total: {} [s]".format(int(esptotal))
+    cadena+="|Cantidad threads: {}".format(threads)
+    cadena+="|Promedio respuesta: {} [s]".format(int(promrta))
+    cadena+="|Promedio trabajos/1000s: {}".format(int(promjob))
+    f.write(cadena)
     f.close()
 
 #Funcion que evalua el tiempo de Turnaround Promedio de los procesos en el sistema. Se mide en segundos.
