@@ -37,7 +37,9 @@ def CargaArchivo(nombArch): #Paso por parámetro el nombre del archivo, ingresad
 
                     #grabo en la lista "procesos" el "proceso" resultante
                     procesos.append(proceso)
-
+                    for i in range(4):
+                        proceso.append(0)
+                        
                     #verifico que se guardó
                     encontro = False
                     for busca in procesos:
