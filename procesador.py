@@ -45,4 +45,3 @@ def muest_lista(listaNueva):
         print(item) """
 
 
-

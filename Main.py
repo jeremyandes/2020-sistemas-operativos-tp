@@ -7,8 +7,8 @@ from RoundRobin import round_robin
 from termcolor import colored
 from FIFO import algoritmo_fifo
 from Threads_FIFO import CreaThreads
-#importar archivos de cada algoritmo
-
+from PrioridadesDesalojo import prioridadesDesalojo
+from PrioridadesSinDesalojo import prioridadesSinDesalojo
 
 parser=Parametros.definicion_params()
 (options, args) = parser.parse_args()#Almacena los parametros del sistema en los atributos de options
@@ -20,34 +20,40 @@ nomArch=input("Que nombre desea ponerle al archivo en el que se guardan los resu
 if options.algoritmo== "FIFO" :
     if options.hilo != 1:
         #Ejecuta algoritmo FIFO con varios hilos, parametros(options.hilo, procesos)
-        print(colored("Se ejecuta FIFO varios hilos", "magenta"))
+        print(colored("Se ejecuta FIFO multihilo...", "magenta"))
         terminados = CreaThreads(options.hilo, Procesos)
     else:
         #Ejecuta algoritmo FIFO con un hilo, parametro(procesos)
-        print(colored("Se ejecuta FIFO un hilo","magenta"))
+        print(colored("Se ejecuta FIFO un hilo...","magenta"))
         terminados = algoritmo_fifo(Procesos)
 elif options.algoritmo=="SJF" :
     #Ejecuta algoritmo SJF, parametro(procesos)
-    print(colored("Se ejecuta primero el mas corto", "magenta"))
+    print(colored("Se ejecuta primero el mas corto...", "magenta"))
 elif options.algoritmo=="PR"  : 
     #Ejecuta algoritmo de prioridades, parametro(procesos)
-    print(colored("Se ejecuta prioridades", "magenta"))
+    desalojo=int(input("Como desea ejecutar el algoritmo de prioridades: 1- con desalojo. 2- sin desalojo "))
+    while desalojo != 1 and desalojo != 2 :
+        print("Entrada incorrecta, elija una opcion valida.")
+        desalojo=input("Como desea ejecutar el algoritmo de prioridades: 1- con desalojo. 2- sin desalojo ")
+    if desalojo == 1 :
+        print(colored("Se ejecuta prioridades con desalojo...", "magenta"))
+        terminados= prioridadesDesalojo(Procesos)
+    else:
+        print(colored("Se ejecuta prioridades sin desalojo...", "magenta"))
+        terminados= prioridadesSinDesalojo(Procesos)
 elif options.algoritmo=="RR":
     #Ejecuta algoritmo round robin, param(options.quantum, procesos)
-    print(colored("Se ejecuta round robin", "magenta"))
+    print(colored("Se ejecuta round robin...", "magenta"))
     terminados=round_robin(Procesos, options.quantum)
-
+print(colored("Ejecucion finalizada...\n", "magenta"))
 #se muestran los resultados de las imulacion a nivel proceso
 Resultados.muestra_result(terminados)
 #Se calculan los resultados de la simulacion a nivel sistema
 promTurna = Resultados.promedio_turnaround(terminados)
 esptotal = Resultados.espera_total(terminados)
 promrta = Resultados.promedio_respuesta(terminados)
+promtrabajos= Resultados.promedio_trabajos(terminados)
 #se muestran los resultados de la sumulacion a nivel sistema
-Resultados.muestra_sisresult(promTurna,esptotal, options.hilo , promrta)
+Resultados.muestra_sisresult(promTurna,esptotal, options.hilo , promrta, promtrabajos)
 #se guardan los resultados de la simulacion en un archivo de salida
-Resultados.escribe_archivo(nomArch, terminados)
-
-
-
-
+Resultados.escribe_archivo(nomArch, terminados, promTurna, esptotal, options.hilo , promrta, promtrabajos)

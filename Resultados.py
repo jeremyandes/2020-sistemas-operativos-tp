@@ -1,5 +1,4 @@
 from termcolor import colored
-from Timer import convierteContador
 import math
 
 '''Tiempo de Turnaround de cada proceso_el total transcurrido desde que se inicia (Ti) hasta que finaliza (Tf)
@@ -24,17 +23,17 @@ def muestra_result(terminados) : #ingresa por parametro una lista con las carcte
         print(cadena)                                           #imprimo la cadena
 
 #Funcion que muestra los resultados de la simulacion a nivel sistema
-def muestra_sisresult(promturna, esptotal, threads, promrta) :
-    print("\n")
+def muestra_sisresult(promturna, esptotal, threads, promrta, promjob) :
     print(colored("RESULTADOS DE LA SIMULACION A NIVEL SISTEMA", "magenta").center(30, " "))
     print("Tiempo promedio turnaround {:.2f} [s]".format(promturna))
     print("Tiempo de espera total de los procesos en el sistema {:.2f} [s]".format(esptotal))
     print("Tiempo promedio de respuesta {:.2f} [s]".format(promrta))
     if threads != 1 :                                        #Muestra cantidad de threads utilizados (si corresponde).
         print("Se utilizaron {} threads".format(threads))
+    print("Promedio de trabajos realizados cada 1000 [s] {:.2f} [trabajos]".format(promjob))
 
 #Funcion que carga los resultados de ejecuion en un archivo
-def escribe_archivo(nomArch, terminados) :
+def escribe_archivo(nomArch, terminados, promturna, esptotal, threads, promrta, promjob) :
     nomArch+=".txt"
     f=open(nomArch, 'w')
     for p in terminados :
@@ -80,20 +79,15 @@ def promedio_respuesta(terminados) :
 
 #Cantidad promedio de trabajos finalizados por cada 1000 segundos.
 def promedio_trabajos(terminados) :
-    milseg=[]                           #inicializo la lista que cuenta los trabajos terminados cada 1000
-    seg=[]                              #inicializo la lista que me dice que milisegundos tienen por lo menos un proceso que termino en ellos 
-    for p in procesos :
-        terminoen= p[6] + p[1]          #segundo de ejecucion del algoritmo en que termino el proceso, turnaround + arribo
-        mili=math.ceil(terminoen/1000)  #divide el tiempo en que termino por mil, y redondea hacia arriba
-        #1455seg / 1000 =1,455 cuando redodndea queda 2, es decir esta dentro de los 2000 seg
-        if mili not in seg :
-            seg.append(mili)
-            milseg.append(1)
-        else :
-            milseg[seg.index(mili)]+=1
-    #Aca ya tengo la lista milseg, paralela a seg, que contiene todos los contadores por unidad de tiempo (1000 seg)
-    sum=0
-    for m in milseg:
-        sum+=m
-    maximo= max()
-
+    max = 0 
+    cont = 0
+    for p in terminados:    #busco el maximo tiempo absoluto de un proceso en el algoritmo
+        t=p[6]+p[1]         #tiempo absoluto del proceso, turnaround + arribo
+        cont+=1             #cuento los procesos terminados
+        if t > max :
+            max=t
+    max=math.ceil(max/1000) #si es 7455, por ejemplo, almaceno 8
+    if cont == 0 :
+        return 0
+    else :
+        return cont/max

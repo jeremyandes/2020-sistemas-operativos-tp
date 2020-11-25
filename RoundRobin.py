@@ -16,10 +16,10 @@ def round_robin(Procesos, quantum):
                 if act[4] == 0 :                                                        #El proceso llego pero no se ejecuto tdv
                     act[5]= time.time() -inicio -act[1]                                 #guardo el seg en que se comenzo a ejecutarse el primer quantum desde su arribo
                 if quantum > act[3] :                                                   #Si el tiempo restante del proceso es menor al quantum
-                    iniciaTimer("Se ejecuta el proceso {}". format(act[0]), act[3])     #Entonces pasa por parametro ese tiempo 
+                    time.sleep(act[3])
                     act[4]+=act[3]                                                      #se suma el tiempo en procesador
                 else:
-                    iniciaTimer("Se ejecuta el proceso {}". format(act[0]), quantum)    #Sino pasa por parametro el tiempo del quantum
+                    time.sleep(quantum)
                     act[4]+=quantum                                                     #se suma el tiempo en procesador
                 act[3]-=quantum                                                         #Se resta el valor del quantum ya sea que se halla ejecutado completo o no
                 if act[3]<=0 :                                                          #El proceso termino si su tiempo restante es menor o igual a cero
