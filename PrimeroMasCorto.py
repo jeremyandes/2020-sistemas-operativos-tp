@@ -4,7 +4,7 @@ from Timer import minSec
 from ordenaListas import OrdenaPor
 
 #campo 0 = PID // campo 1 = tiempo de arribo // campo 2 = prioridad // campo 3 = tiempo de procesador
-#campo 4 = tiempo de respuesta // campo 5 = turnaround // campo 6 = tiempo de cpu // campo 7 = tiempo de espera
+#campo 4 = tiempo de cpu // campo 5 = tiempo de respuesta // campo 6 = turnaround // campo 7 = tiempo de espera
 def primeroMasCorto(Procesos):
     Procesos = OrdenaPor(1,Procesos)
     terminados = list()
