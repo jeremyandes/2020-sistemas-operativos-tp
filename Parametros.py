@@ -1,6 +1,5 @@
 #Parametros del sistema
 from optparse import OptionParser
-from procesador import iniciaProcesador
 import sys
 
 #Funcion que devuelve el nombre del algoritmo segun la sigla

@@ -15,23 +15,23 @@ def muestra_result(terminados) : #ingresa por parametro una lista con las carcte
     print(colored("  proceso  |   turnaround    | cola de listos | espera total |    respuesta    |     uso de CPU     ", "green"))
     for p in terminados :                                       #Muestro los resultados por proceso
         cadena="{:^11s}".format(str(p[0]))                      #inicializo la cadena con el id 
-        cadena+="|" + "{:.2f} [s]".format(p[6]).center(17)      #agrego el tiempo turnaround
-        cadena+="|" + "{:.2f} [s]".format(p[7]).center(16)      #agrego el tiempo de espera en la cola de listos
-        cadena+="|" + "{:.2f} [s]".format(p[7]).center(14)      #agrego el tiempo de espera total
-        cadena+="|" + "{:.2f} [s]".format(p[5]).center(17)      #agrego el tiempo de respuesta
-        cadena+="|" + "{:.2f} [s]".format(p[4]).center(20)      #agrego el tiempo de uso de CPU
+        cadena+="|" + "{:.2f} [s]".format(int(p[6])).center(17)      #agrego el tiempo turnaround
+        cadena+="|" + "{:.2f} [s]".format(int(p[7])).center(16)      #agrego el tiempo de espera en la cola de listos
+        cadena+="|" + "{:.2f} [s]".format(int(p[7])).center(14)      #agrego el tiempo de espera total
+        cadena+="|" + "{:.2f} [s]".format(int(p[5])).center(17)      #agrego el tiempo de respuesta
+        cadena+="|" + "{:.2f} [s]".format(int(p[4])).center(20)      #agrego el tiempo de uso de CPU
         print(cadena)                                           #imprimo la cadena
     print("\n")
 
 #Funcion que muestra los resultados de la simulacion a nivel sistema
 def muestra_sisresult(promturna, esptotal, threads, promrta, promjob) :
     print(colored("RESULTADOS DE LA SIMULACION A NIVEL SISTEMA", "magenta").center(70))
-    print(colored("Tiempo promedio turnaround","green").center(49)+"|"+"{} [s]".format(int(promturna)).center(17)+"|")
-    print(colored("Tiempo de espera total de los procesos","green").center(49)+"|"+"{} [s]".format(int(esptotal)).center(17)+"|")
-    print(colored("Tiempo promedio de respuesta","green").center(49)+"|"+" {} [s]".format(int(promrta)).center(17)+"|")
+    print(colored("Tiempo promedio turnaround","green").center(49)+"|"+"{:.2f} [s]".format(promturna).center(17)+"|")
+    print(colored("Tiempo de espera total de los procesos","green").center(49)+"|"+"{:.2f} [s]".format(int(esptotal)).center(17)+"|")
+    print(colored("Tiempo promedio de respuesta","green").center(49)+"|"+" {:.2f} [s]".format(promrta).center(17)+"|")
     if threads != 1 :                                        #Muestra cantidad de threads utilizados (si corresponde).
         print(colored("Cantidad de threads utilizados","green").center(49)+"|"+"{} ".format(threads).center(17)+"|")
-    print(colored("Promedio de trabajos realizados/1000s","green").center(49)+"|"+"{} [trabajos]".format(int(promjob)).center(17)+"|")
+    print(colored("Promedio de trabajos realizados/1000s","green").center(49)+"|"+"{:.2f} [trabajos]".format(promjob).center(17)+"|")
     print("\n")
 
 #Funcion que carga los resultados de ejecuion en un archivo
@@ -40,17 +40,18 @@ def escribe_archivo(nomArch, terminados, promturna, esptotal, threads, promrta, 
     f=open(nomArch, 'w')
     for p in terminados :
         f.write("id: {}".format(str(p[0])))
-        f.write("|turnaround: {:.2f} [s]".format(p[6]))
-        f.write("|espera en cola de listos: {:.2f} [s]".format(p[7]))
-        f.write("|espera total: {:.2f} [s]".format(p[7]))
-        f.write("|respuesta: {:.2f} [s]".format(p[5]))
-        f.write("|uso de CPU: {:.2f} [s]".format(p[4]))
+        f.write("|turnaround: {:.2f} [s]".format(int(p[6])))
+        f.write("|espera en cola de listos: {:.2f} [s]".format(int(p[7])))
+        f.write("|espera total: {:.2f} [s]".format(int(p[7])))
+        f.write("|respuesta: {:.2f} [s]".format(int(p[5])))
+        f.write("|uso de CPU: {:.2f} [s]".format(int(p[4])))
         f.write("\n")
-    cadena="Pomedio turnaround: {} [s]".format(int(promturna))
-    cadena+="|Espera total: {} [s]".format(int(esptotal))
-    cadena+="|Cantidad threads: {}".format(threads)
-    cadena+="|Promedio respuesta: {} [s]".format(int(promrta))
-    cadena+="|Promedio trabajos/1000s: {}".format(int(promjob))
+    cadena="Pomedio turnaround: {:.2f} [s]".format(promturna)
+    cadena+="|Espera total: {:.2f} [s]".format(int(esptotal))
+    if threads != 1:
+        cadena+="|Cantidad threads: {}".format(threads)
+    cadena+="|Promedio respuesta: {:.2f} [s]".format(promrta)
+    cadena+="|Promedio trabajos/1000s: {:.2f}".format(promjob)
     f.write(cadena)
     f.close()
 
