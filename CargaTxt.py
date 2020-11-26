@@ -45,7 +45,6 @@ def CargaArchivo(nombArch): #Paso por parámetro el nombre del archivo, ingresad
                     encontro = False
                     for busca in procesos:
                         if busca[0] == proceso[0]:
-                            print("Proceso ID={} cargado correctamente.".format(int(proceso[0])))
                             encontro = True
                             break
 

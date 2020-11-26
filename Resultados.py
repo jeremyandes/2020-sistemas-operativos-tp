@@ -11,7 +11,7 @@ Tiempo Total de Uso de procesador'''
 '''[0]ID [1]TArribo [2]prioridad [3]tiempo de procesador [4]tiempo de CPU [5]tiempo de rta [6]turnaround [7]espera total'''
 #Funcion que muestra los resultados de la simulacion por proceso
 def muestra_result(terminados) : #ingresa por parametro una lista con las carcteristicas definidas arriba ^
-    print(colored("RESULTADOS DE LA SIMULACION POR PROCESO", "magenta").center(30, " "))
+    print(colored("RESULTADOS DE LA SIMULACION POR PROCESO", "magenta").center(90))
     print(colored("  proceso  |   turnaround    | cola de listos | espera total |    respuesta    |     uso de CPU     ", "green"))
     for p in terminados :                                       #Muestro los resultados por proceso
         cadena="{:^11s}".format(str(p[0]))                      #inicializo la cadena con el id 
@@ -21,16 +21,18 @@ def muestra_result(terminados) : #ingresa por parametro una lista con las carcte
         cadena+="|" + "{:.2f} [s]".format(p[5]).center(17)      #agrego el tiempo de respuesta
         cadena+="|" + "{:.2f} [s]".format(p[4]).center(20)      #agrego el tiempo de uso de CPU
         print(cadena)                                           #imprimo la cadena
+    print("\n")
 
 #Funcion que muestra los resultados de la simulacion a nivel sistema
 def muestra_sisresult(promturna, esptotal, threads, promrta, promjob) :
-    print(colored("RESULTADOS DE LA SIMULACION A NIVEL SISTEMA", "magenta").center(30, " "))
-    print("Tiempo promedio turnaround".center(42)+" {} [s]".format(int(promturna)))
-    print("Tiempo de espera total de los procesos en el sistema".center(42)+" {} [s]".format(int(esptotal)))
-    print("Tiempo promedio de respuesta".center(42)+" {} [s]".format(int(promrta)))
+    print(colored("RESULTADOS DE LA SIMULACION A NIVEL SISTEMA", "magenta").center(70))
+    print(colored("Tiempo promedio turnaround","green").center(49)+"|"+"{} [s]".format(int(promturna)).center(17)+"|")
+    print(colored("Tiempo de espera total de los procesos","green").center(49)+"|"+"{} [s]".format(int(esptotal)).center(17)+"|")
+    print(colored("Tiempo promedio de respuesta","green").center(49)+"|"+" {} [s]".format(int(promrta)).center(17)+"|")
     if threads != 1 :                                        #Muestra cantidad de threads utilizados (si corresponde).
-        print("Se utilizaron {} threads".format(threads))
-    print("Promedio de trabajos realizados cada 1000 [s] {:.2f} [trabajos]".format(promjob))
+        print(colored("Cantidad de threads utilizados","green").center(49)+"|"+"{} ".format(threads).center(17)+"|")
+    print(colored("Promedio de trabajos realizados/1000s","green").center(49)+"|"+"{} [trabajos]".format(int(promjob)).center(17)+"|")
+    print("\n")
 
 #Funcion que carga los resultados de ejecuion en un archivo
 def escribe_archivo(nomArch, terminados, promturna, esptotal, threads, promrta, promjob) :

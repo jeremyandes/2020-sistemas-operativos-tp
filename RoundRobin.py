@@ -1,7 +1,7 @@
 #Ejecucion de los procesos segun algoritmo de planificion: Round Robin, es de tipo apropiativa
-from Timer import iniciaTimer
 import time
 from termcolor import colored
+from Timer import minSec
 
 '''[0]ID [1]TArribo [2]prioridad [3]tiempo de procesador [4]tiempo de CPU
 [5]tiempo de rta [6]turnaround [7]espera total'''
@@ -23,7 +23,7 @@ def round_robin(Procesos, quantum):
                     act[4]+=quantum                                                     #se suma el tiempo en procesador
                 act[3]-=quantum                                                         #Se resta el valor del quantum ya sea que se halla ejecutado completo o no
                 if act[3]<=0 :                                                          #El proceso termino si su tiempo restante es menor o igual a cero
-                    print("El proceso {} termino de ejecutarse. En el momento {:.1f} \n".format(act[0],time.time()-inicio))
+                    print("[{}]     Proceso ID={} finalizado.\n".format(minSec(int((time.time()-inicio))), act[0]))
                     act[6]= time.time() - inicio - act[1]                               #Guardo el tiempo TURNAROUND =seg en q termino - seg de arribo      
                     act[7]= act[6]-act[4]                                               #Guardo el tiempo de espera total, turnaround - tiempo de CPU
                     borrados.append(act)                                                #Guardo el proceso que termino

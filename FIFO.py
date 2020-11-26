@@ -1,4 +1,4 @@
-import Timer
+from Timer import minSec
 import time
 '''
 [0]ID [1]TArribo [2]prioridad [3]tiempo de procesador 
@@ -18,7 +18,7 @@ def algoritmo_fifo(Procesos):
                 act[7]=(time.time()-inicio-act[1])              #timepo de espera en la cola
                 act[4]=act[3]                                   #tiempo de CPU
                 time.sleep(act[3])
-                print("[{}]     Proceso ID={} finalizado.".format(minSec((time.time()-inicio)),act[0]))
+                print("[{}]     Proceso ID={} finalizado.\n".format(minSec(int((time.time()-inicio))), act[0]))
                 act[6]=(time.time()-inicio-act[1])              #agrego el tiempo de turnarround
                 terminados.append(act)                          #guardo en una lista los terminados para tener los resultados
                 Procesos.remove(act) #como el elemento a eliminar en FIFO siempre es la primer posicion, corto el ciclo,

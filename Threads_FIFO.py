@@ -1,8 +1,6 @@
 import threading
 import time
-import Timer
-'''with some_lock:
-    # do something...'''
+from Timer import minSec
 
 '''
 [0]ID [1]TArribo [2]prioridad [3]tiempo de procesador 
@@ -29,7 +27,7 @@ def threader(Procesos):
             time.sleep(proceso[3])
             
             with print_lock :
-                print("[{}]     Proceso ID={} finalizado.".format(minSec((time.time()-inicio)),act[0]))
+                print("[{}]     Proceso ID={} finalizado.\n".format(minSec(int((time.time()-inicio))),proceso[0]))
             proceso[6]= time.time()-inicio-proceso[1]      #tiempo de turnaround 
         
             with terminados_lock:

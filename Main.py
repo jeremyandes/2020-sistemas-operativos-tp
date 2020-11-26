@@ -9,6 +9,7 @@ from FIFO import algoritmo_fifo
 from Threads_FIFO import CreaThreads
 from PrioridadesDesalojo import prioridadesDesalojo
 from PrioridadesSinDesalojo import prioridadesSinDesalojo
+from PrimeroMasCorto import primeroMasCorto
 
 parser=Parametros.definicion_params()
 (options, args) = parser.parse_args()#Almacena los parametros del sistema en los atributos de options
@@ -17,6 +18,7 @@ Procesos = CargaTxt.CargaArchivo(options.filename)#Carga la lista de procesos de
 Procesos = ordenaListas.OrdenaPor(1,Procesos)#Ordena la lista de procesos por orden de llegada
 #procesador.iniciaProcesador(Procesos)#Muestra la carga de los procesos
 nomArch=input("Que nombre desea ponerle al archivo en el que se guardan los resultados de la simulacion? ")
+print("\n")
 if options.algoritmo== "FIFO" :
     if options.hilo != 1:
         #Ejecuta algoritmo FIFO con varios hilos, parametros(options.hilo, procesos)
@@ -29,6 +31,7 @@ if options.algoritmo== "FIFO" :
 elif options.algoritmo=="SJF" :
     #Ejecuta algoritmo SJF, parametro(procesos)
     print(colored("Se ejecuta primero el mas corto...", "magenta"))
+    terminados=primeroMasCorto(Procesos)
 elif options.algoritmo=="PR"  : 
     #Ejecuta algoritmo de prioridades, parametro(procesos)
     desalojo=int(input("Como desea ejecutar el algoritmo de prioridades: 1- con desalojo. 2- sin desalojo "))
@@ -56,4 +59,5 @@ promtrabajos= Resultados.promedio_trabajos(terminados)
 #se muestran los resultados de la sumulacion a nivel sistema
 Resultados.muestra_sisresult(promTurna,esptotal, options.hilo , promrta, promtrabajos)
 #se guardan los resultados de la simulacion en un archivo de salida
+print(colored("Escribiendo resultados en archivo...", "magenta"))
 Resultados.escribe_archivo(nomArch, terminados, promTurna, esptotal, options.hilo , promrta, promtrabajos)
