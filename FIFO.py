@@ -25,7 +25,6 @@ def algoritmo_fifo(Procesos):
                 break                #y vuelvo a recorrer desde el siguiente proceso              
             else:
                 break                #vuelvo a preguntar si esta listo
-    print("EJECUCION FINALIZADA")
     return terminados  #Guardamos en esta lista los procesos finalizados con sus resultados
 
 
