@@ -37,6 +37,13 @@ def comprueba_params(options):
     #Si no se ingreso tipo de algortimo, termina el programa con un mensaje indicando la razon
     if al==None :
         sys.exit("<< ERROR: Debe indicar el algoritmo a utilizar >>".center(20))
+    if options.hilo != 1 and al != "FIFO":
+        sys.exit("<< ERROR: No está permitido el uso de threads en algoritmos que no sean FIFO >>")
+    if options.hilo < 1 and al == "FIFO":
+        sys.exit("<< ERROR: El numero de threads debe ser mayor o igual a 1 >>")
+    if options.quantum != 2 and al != "RR":
+        sys.exit("<< ERROR: No está permitido el uso de quantums en algoritmos que no sean Round Robin >>")
+    
 """
     else:
         print("El algorimo elegido fue ", switch_algoritmo(al))

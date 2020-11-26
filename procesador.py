@@ -33,21 +33,21 @@ elif options.algoritmo=="SJF" :
     terminados=primeroMasCorto(Procesos)
 elif options.algoritmo=="PR"  : 
     #Ejecuta algoritmo de prioridades, parametro(procesos)
-    desalojo=int(input("Como desea ejecutar el algoritmo de prioridades: 1- con desalojo. 2- sin desalojo "))
+    desalojo=int(input("¿Como desea ejecutar el algoritmo de prioridades?: 1- con desalojo. 2- sin desalojo "))
     while desalojo != 1 and desalojo != 2 :
         print("Entrada incorrecta, elija una opcion valida.")
-        desalojo=input("Como desea ejecutar el algoritmo de prioridades: 1- con desalojo. 2- sin desalojo ")
+        desalojo=input("¿Como desea ejecutar el algoritmo de prioridades?: 1- con desalojo. 2- sin desalojo ")
     if desalojo == 1 :
-        print(colored("Se ejecuta prioridades con desalojo...", "magenta"))
+        print(colored("Se ejecuta Prioridades con Desalojo...", "magenta"))
         terminados= prioridadesDesalojo(Procesos)
     else:
-        print(colored("Se ejecuta prioridades sin desalojo...", "magenta"))
+        print(colored("Se ejecuta Prioridades sin Desalojo...", "magenta"))
         terminados= prioridadesSinDesalojo(Procesos)
 elif options.algoritmo=="RR":
     #Ejecuta algoritmo round robin, param(options.quantum, procesos)
-    print(colored("Se ejecuta round robin...", "magenta"))
+    print(colored("Se ejecuta Round Robin...", "magenta"))
     terminados=round_robin(Procesos, options.quantum)
-print(colored("Ejecucion finalizada...\n", "magenta"))
+print(colored("Ejecución finalizada...\n", "magenta"))
 #se muestran los resultados de las imulacion a nivel proceso
 Resultados.muestra_result(terminados)
 #Se calculan los resultados de la simulacion a nivel sistema

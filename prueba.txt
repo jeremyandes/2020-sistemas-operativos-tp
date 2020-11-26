@@ -1,6 +1,6 @@
-id: 9988|turnaround: 9.00 [s]|espera en cola de listos: 0.00 [s]|espera total: 0.00 [s]|respuesta: 0.00 [s]|uso de CPU: 9.00 [s]
-id: 1928|turnaround: 11.00 [s]|espera en cola de listos: 4.00 [s]|espera total: 4.00 [s]|respuesta: 4.00 [s]|uso de CPU: 7.00 [s]
-id: 1200|turnaround: 15.00 [s]|espera en cola de listos: 9.00 [s]|espera total: 9.00 [s]|respuesta: 9.00 [s]|uso de CPU: 6.00 [s]
-id: 2500|turnaround: 17.00 [s]|espera en cola de listos: 12.00 [s]|espera total: 12.00 [s]|respuesta: 12.00 [s]|uso de CPU: 5.00 [s]
-id: 7794|turnaround: 27.00 [s]|espera en cola de listos: 19.00 [s]|espera total: 19.00 [s]|respuesta: 19.00 [s]|uso de CPU: 8.00 [s]
-Pomedio turnaround: 15.80 [s]|Espera total: 44.00 [s]|Promedio respuesta: 8.80 [s]|Promedio trabajos/1000s: 5.00
+id: 9988|turnaround: 21.00 [s]|espera en cola de listos: 12.00 [s]|espera total: 12.00 [s]|respuesta: 0.00 [s]|uso de CPU: 9.00 [s]
+id: 1200|turnaround: 20.00 [s]|espera en cola de listos: 14.00 [s]|espera total: 14.00 [s]|respuesta: 2.00 [s]|uso de CPU: 6.00 [s]
+id: 2500|turnaround: 22.00 [s]|espera en cola de listos: 17.00 [s]|espera total: 17.00 [s]|respuesta: 5.00 [s]|uso de CPU: 5.00 [s]
+id: 1928|turnaround: 28.00 [s]|espera en cola de listos: 21.00 [s]|espera total: 21.00 [s]|respuesta: 1.00 [s]|uso de CPU: 7.00 [s]
+id: 7794|turnaround: 27.00 [s]|espera en cola de listos: 19.00 [s]|espera total: 19.00 [s]|respuesta: 4.00 [s]|uso de CPU: 8.00 [s]
+Pomedio turnaround: 23.65 [s]|Espera total: 83.00 [s]|Promedio respuesta: 2.41 [s]|Promedio trabajos/1000s: 5.00
